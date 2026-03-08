@@ -1,77 +1,73 @@
 <?php
-$resultado = null;
-$erro = null;
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $a = (float)$_POST["a"];
+    $b = (float)$_POST["b"];
+    $operador = $_POST["operador"];
+    $resultado = 0;
 
-    $a = $_POST["a"];
-    $b = $_POST["b"];
-    $operacao = $_POST["operacao"];
+    if ($operador == "soma") {
+        $resultado = $a + $b;
 
-    if (is_numeric($a) && is_numeric($b)) {
+    } elseif ($operador == "sub") {
+        $resultado = $a - $b;
 
-        switch ($operacao) {
-            case "+":
-                $resultado = $a + $b;
-                break;
-            case "-":
-                $resultado = $a - $b;
-                break;
-            case "*":
-                $resultado = $a * $b;
-                break;
-            case "/":
-                if ($b != 0) {
-                    $resultado = $a / $b;
-                } else {
-                    $erro = "Não existe divisão por zero.";
-                }
-                break;
+    } elseif ($operador == "multi") {
+        $resultado = $a * $b;
+
+    } elseif ($operador == "divide") {
+
+        if ($b == 0) {
+            $erro = "Não pode dividir por zero";
+        } else {
+            $resultado = $a / $b;
+        }
+
+    } elseif ($operador == "elevar") {
+        $resultado = pow($a, $b);
+
+    } elseif ($operador == "raiz") {
+
+        if ($b == 0) {
+            $erro = "Índice da raiz não pode ser zero";
+        } else {
+            $resultado = pow($a, 1/$b);
         }
 
     } else {
-        $erro = "Digite apenas números válidos.";
+        $erro = "Operador não definido";
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Calculadora PHP</title>
-</head>
 <body>
+<h1><?php echo 'Minha Calculadora!'; ?></h1>
 
-<h1>Minha Calculadora!</h1>
-
-<form method="POST">
-    A: <input type="text" name="a"><br><br>
-    B: <input type="text" name="b"><br><br>
-
-    Operação:
-    <select name="operacao">
-        <option value="+">Soma (+)</option>
-        <option value="-">Subtração (-)</option>
-        <option value="*">Multiplicação (*)</option>
-        <option value="/">Divisão (/)</option>
-    </select>
+<form method='POST' action='calculadora.php'>
+    a:<input type=text name='a'><br>
+    b:<input type=text name='b'>
+    <br>Operação: 
+    <br><input type="radio" name="operador" value="soma"> Soma
+    <br><input type="radio" name="operador" value="sub"> Subtrai
+    <br><input type="radio" name="operador" value="multi">Multiplica
+    <br><input type="radio" name="operador" value="divide">Divide
+    <br><input type="radio" name="operador" value="elevar"> Elevar
+    <br><input type="radio" name="operador" value="raiz"> Raiz
+    <br>
+    <input type=submit value='Calcular'>
     <br><br>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    <input type="submit" value="Calcular">
-</form>
+    if(isset($erro)){
+        echo $erro;
+    } else {
+        echo 'Resultado: ' . $resultado;
+    }
 
-<br>
-
-<?php
-if ($resultado !== null) {
-    echo "Resultado: " . $resultado;
-}
-
-if ($erro !== null) {
-    echo "<p style='color:red;'>$erro</p>";
 }
 ?>
-
+    
 </body>
 </html>
