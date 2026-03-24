@@ -1,1 +1,12 @@
-
+2023001;Lucas Silva Rodrigues;lucas.silva@email.com.br
+2023002;Mariana Souza  Let;mariana.souza@email.com
+2023003;Pedro Oliveira;pedro.oliveira@email.com
+2023004;Ana Costa;ana.costa@email.com
+2023005;Gabriel Santos;gabriel.santos@email.com
+2023006;Juliana Ferreira;juliana.ferreira@email.com
+2023007;Rafael Pereira;rafael.pereira@email.com
+2023008;Camila Rodrigues;camila.rodrigues@email.com
+2023009;Bruno Almeida;bruno.almeida@email.com
+2023010;Fernanda Gomes;fernanda.gomes@email.com
+;;
+24104708360045;João Victor Ferreira Basilio Dourado;joao.24104708360045@faeterj-rio.edu.br
