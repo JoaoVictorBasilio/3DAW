@@ -1,10 +1,5 @@
 <?php
-// Trabalho acadêmico: Sistema de CRUD de alunos usando arquivo texto (alunos.txt)
-// Autor: [Seu Nome] - RA: [Seu RA]
-// Curso: [Seu Curso]
-// Disciplina: [Sua Disciplina]
-// Professor(a): [Nome do Professor]
-// Data: 
+
 $msgSucesso = ""; 
 $msgErro = "";   
 
