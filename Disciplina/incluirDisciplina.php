@@ -1,50 +1,56 @@
 <?php
-$msgSucesso = "";
-$msgErro = "";
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+$msgSucesso = ""; 
+$msgErro = "";   
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sigla = trim($_POST["sigla"]);
     $nome = trim($_POST["nome"]);
     $carga = trim($_POST["carga"]);
 
-    if($sigla === '' || $nome === '' || $carga === ''){
-        $msgErro ='Erro: Preencha todos os campos.';
+    if ($sigla === '' || $nome === '' || $carga === '') {
+        $msgErro = 'Erro: Preencha todos os campos.';
     } else {
         $siglaExiste = false;
 
-        if(file_exists("disciplinas.txt")){
+        if (file_exists("disciplinas.txt")) {
             $arq = fopen("disciplinas.txt", "r");
 
             while (($linha = fgets($arq)) !== false) {
                 $linhaLimpa = trim($linha);
                 if (empty($linhaLimpa)) continue;
-                
-                $dados = explode(";",$linhaLimpa);
 
-                if (isset($dados[0]) && $dados[0] == $sigla) {$siglaExiste = true;
-                break;
+                $dados = explode(";", $linhaLimpa);
+
+                if (isset($dados[0]) && $dados[0] == $sigla) {
+                    $siglaExiste = true;
+                    break;
                 }
             }
             fclose($arq);
         }
-        if($siglaExiste) {
+
+        if ($siglaExiste) {
             $msgErro = "Erro: A sigla '$sigla' já está cadastrada!";
         } else {
-            $conteudo = file_exists("disciplinas.txt") ? file_get_contents("disciplina.txt") : '';
+            
+            $conteudo = file_exists("disciplinas.txt") ? file_get_contents("disciplinas.txt") : '';
             $arq = fopen("disciplinas.txt", "a") or die("Erro ao abrir arquivo");
+
             if (!empty($conteudo) && substr($conteudo, -1) !== "\n" && substr($conteudo, -1) !== "\r") {
                 fwrite($arq, PHP_EOL);
             }
-            $novaLinha = $sigla . ";" . $nome . ";" . $carga . ":" . PHP_EOL;
+
+            $novaLinha = $sigla . ";" . $nome . ";" . $carga . PHP_EOL;
             fwrite($arq, $novaLinha);
+
             fclose($arq);
+
             $msgSucesso = "Disciplina cadastrada com sucesso!";
-
-
-
+        }
     }
 }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -66,8 +72,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <label>Nome:</label> 
         <input type="text" name="nome" required>
         
-        <label>Email:</label> 
-        <input type="carga" name="carga" required>
+        <label>Carga Horária:</label> 
+        <input type="number" name="carga" required>
 
         <input type="submit" value="Cadastrar">
     </form>
@@ -81,7 +87,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <?php } ?>
 
     <br>
-
+    <a href="listarDisciplinas.php">Ver lista de disciplinas</a>
+</div>
 
 </body>
 </html>

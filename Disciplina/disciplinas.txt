@@ -1,0 +1,36 @@
+1FAC;Fundamentos de Algoritmos de Computação;4
+1IAS;Introdução à Análise de Sistemas;4
+1IHM;Interface Homem-Máquina;2
+1LPO;Língua Portuguesa;4
+1MAB;Matemática Básica;4
+1MAC;Matemática para Computação;4
+1ORG;Organização de Computadores;4
+2CAL;Cálculo;4
+2CAW;Construção de Aplicações WEB;4
+2FPR;Fundamentos de Programação;4
+2LES;Língua Estrangeira;2
+2MPA;Métodos e Processos Administrativos;2
+2REQ;Engenharia de Requisitos;4
+2SOP;Fundamentos de Sistemas Operacionais;4
+2TPH;Técnicas e Paradigmas Humanos;4
+3ALG;Álgebra Linear;4
+3DAW;Desenvolvimento de Tecnologias WEB;4
+3ESD;Estrutura de Dados;4
+3PBD;Projeto de Bancos de Dados;4
+3POB;Programação Orientada a Objetos Básica;4
+3RSD;Fundamentos de Redes e Sistemas Distribuídos;4
+4ADS;Tópicos em Análise e Desenvolvimento de Sistemas;4
+4EMP;Empreendedorismo e Inovação;2
+4EST;Estatística e Probabilidade;4
+4UBD;Utilização de Bancos de Dados;4
+4POA;Programação Orientada a Objetos Avançada;4
+4MET;Metodologia de Pesquisa;2
+4MOD;Modelagem de Sistemas;4
+4SEG;Segurança da Informação;4
+4LIB;Linguagem Brasileira de Sinais;2
+5GPS;Gerência e Projeto de Sistemas;2
+5PDM;Programação de Dispositivos Móveis;4
+5PJS;Projeto de Sistemas;4
+5SBO;Programação de Scripts de Bancos de Dados;4
+5TAV;Tópicos Avançados;4
+5TFC;Orientação de Trabalho de Final de Curso;2
