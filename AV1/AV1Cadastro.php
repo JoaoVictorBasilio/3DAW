@@ -27,37 +27,49 @@ $msgErro = "";
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $nome = trim($_POST["nome"]);
+    
+    $nome = str_replace(';', ',', $nome); 
+
     $email = trim($_POST["email"]);
     $senha = trim($_POST["senha"]);
     $tipo = trim($_POST["tipo"]);
 
+
     if($nome === '' || $email === '' || $senha === '' || $tipo === ''){
         $msgErro = 'Erro: Preencha todos os campos!';
+    } else if ($tipo == 'adm' && strpos($email, '@faeterj-rio.edu.br') === false) {
+        $msgErro = 'Erro: Administradores devem usar email @faeterj-rio.edu.br!';
     } else {
+        
         $emailExiste = false;
 
         if (file_exists("usuarios.txt")){
             $arq = fopen("usuarios.txt","r");
+            if ($arq) {
+                while(($linha = fgets($arq))!== false){
+                    $linhaLimpa = trim($linha);
+                    if (empty($linhaLimpa)) continue;
 
-            while(($linha = fgets($arq))!== false){
-                $linhaLimpa = trim($linha);
-                if (empty($linhaLimpa)) continue;
+                    $dados = explode(";", $linhaLimpa);
 
-                $dados = explode(";", $linhaLimpa);
-
-                if(isset($dados[0]) && $dados[0] == email){
-                    $emailExiste = true;
-                    break;
+                   
+                    if(isset($dados[0]) && $dados[0] == $email){
+                        $emailExiste = true;
+                        break;
+                    }
                 }
-                
-                
+                fclose($arq);
             }
-            fclose($arq);
         }
 
+   
         if($emailExiste){
             $msgErro = "Erro: usuário já cadastrado!";
         } else {
+         
+            $senhaSegura = password_hash($senha, PASSWORD_DEFAULT);
+
+           
             $conteudo = file_exists("usuarios.txt") ? file_get_contents("usuarios.txt") : '';
             $arq = fopen("usuarios.txt", "a") or die("Erro ao abrir o arquivo!");
 
@@ -65,16 +77,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 fwrite($arq, PHP_EOL);
             }
 
-            $novaLinha = $email . ";" . $nome . ";" . $$tipo . ";" . $senha .  PHP_EOL;
+            $novaLinha = $email . ";" . $nome . ";" . $tipo . ";" . $senhaSegura . PHP_EOL;
             fwrite($arq, $novaLinha);
 
             fclose($arq);
 
-            $msgSucesso = "Usuário cadastrado!";
+            $msgSucesso = "Usuário cadastrado com sucesso!";
         }
     }
 }
-
 
 ?>
 
@@ -83,7 +94,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <head>
         <meta charset="UTF-8">
         <title>Cadastrar Usuário</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="AV1.css">
 </head>
 <body>
 
@@ -98,12 +109,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <input type="text" name="nome" required>
 
         <label>Tipo:</label>
-        <input type="radio" name="tipo" value="normal" required>Normal
-        <inpit type="radio" name="tipo" value="adm" required>Administrativo
+        <select name="tipo">
+            <option value="normal">Normal</option>
+            <option value="adm">Administrador</option>
+        </select>
 
         <label>Senha:</label>
         <input type="password" name="senha" required>
-</form>
+<br>
+        <input type="submit" value="Cadastrar">
+    </form>
 
 <?php if($msgSucesso != "") { ?>
 <p class="msg-sucesso"><?php echo $msgSucesso; ?></p>
@@ -112,6 +127,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <?php if($msgErro != "") { ?>
 <p class="msg-erro"><?php echo $msgErro; ?></p>
 <?php } ?>
+
+<a href="AV1Login.php">Já possui login?</a>
 
 </div>
 

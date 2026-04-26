@@ -1,0 +1,97 @@
+[
+    {
+        "id": 1777192040,
+        "texto": "Qual dessas opções inicia corretamente um script php?",
+        "tipo": "multipla",
+        "opcoes": [
+            "<script php>",
+            "<?php>",
+            "<php>",
+            "<??>"
+        ],
+        "resposta_correta": "<?php>"
+    },
+    {
+        "id": 1777192138,
+        "texto": "O que o comando echo faz no PHP?",
+        "tipo": "multipla",
+        "opcoes": [
+            "Recebe dados do usuário",
+            "Exibe dados na tela",
+            "Cria variávies",
+            "Fecha o script"
+        ],
+        "resposta_correta": "Exibe dados na tela"
+    },
+    {
+        "id": 1777192220,
+        "texto": "Qual é a forma correta de declarar uma variável em PHP?",
+        "tipo": "multipla",
+        "opcoes": [
+            "var nome = \"João\";",
+            "$nome = \"João\";",
+            "string nome = \"João\";",
+            "nome = \"João\";"
+        ],
+        "resposta_correta": "$nome = \"João\";"
+    },
+    {
+        "id": 1777192270,
+        "texto": "Qual operador é usado para concatenar strings em PHP?",
+        "tipo": "multipla",
+        "opcoes": [
+            "+",
+            "&",
+            ".",
+            ","
+        ],
+        "resposta_correta": "."
+    },
+    {
+        "id": 1777192311,
+        "texto": "Qual estrutura é usada para repetição em PHP?",
+        "tipo": "multipla",
+        "opcoes": [
+            "if",
+            "switch",
+            "while",
+            "echo"
+        ],
+        "resposta_correta": "while"
+    },
+    {
+        "id": 1777192329,
+        "texto": "Explique o que é PHP e para que ele é utilizado no desenvolvimento web.",
+        "tipo": "discursiva",
+        "opcoes": [],
+        "resposta_correta": ""
+    },
+    {
+        "id": 1777192339,
+        "texto": "Qual a diferença entre GET e POST ao enviar dados em formulários?",
+        "tipo": "discursiva",
+        "opcoes": [],
+        "resposta_correta": ""
+    },
+    {
+        "id": 1777192348,
+        "texto": "O que são variáveis em PHP e como elas funcionam?",
+        "tipo": "discursiva",
+        "opcoes": [],
+        "resposta_correta": ""
+    },
+    {
+        "id": 1777192363,
+        "texto": "Explique o que é uma estrutura condicional e dê um exemplo em PHP.",
+        "tipo": "discursiva",
+        "opcoes": [],
+        "resposta_correta": ""
+    },
+    {
+        "id": 1777192375,
+        "texto": "O que são arrays em PHP? Dê um exemplo simples.",
+        "tipo": "discursiva",
+        "opcoes": [],
+        "resposta_correta": ""
+    }
+]
