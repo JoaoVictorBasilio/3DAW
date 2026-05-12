@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora JavaScript</title>
+
+    <link rel="stylesheet" href="CSScalculadora.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Calculadora</h1>
+
+        <div class="calculadora">
+
+            <div class="tela">
+                <p id="expr"></p>
+                <h2 id="result">0</h2>
+            </div>
+
+            <div class="botoes">
+
+                <button onclick="limpar()">C</button>
+                <button onclick="apagar()">⌫</button>
+                <button onclick="operacao('%')">%</button>
+                <button onclick="operacao('/')">÷</button>
+
+                <button onclick="numero('7')">7</button>
+                <button onclick="numero('8')">8</button>
+                <button onclick="numero('9')">9</button>
+                <button onclick="operacao('*')">×</button>
+
+                <button onclick="numero('4')">4</button>
+                <button onclick="numero('5')">5</button>
+                <button onclick="numero('6')">6</button>
+                <button onclick="operacao('-')">−</button>
+
+                <button onclick="numero('1')">1</button>
+                <button onclick="numero('2')">2</button>
+                <button onclick="numero('3')">3</button>
+                <button onclick="operacao('+')">+</button>
+
+                <button onclick="numero('0')" class="zero">0</button>
+                <button onclick="virgula()">,</button>
+                <button onclick="igual()">=</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="JScalculadora.js"></script>
+
+</body>
+</html>
