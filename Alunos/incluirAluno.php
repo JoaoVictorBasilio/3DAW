@@ -8,33 +8,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = trim($_POST["nome"]);
     $email = trim($_POST["email"]);
 
-    // Validação básica: campos obrigatórios
     if ($matricula === '' || $nome === '' || $email === '') {
         $msgErro = 'Erro: Preencha todos os campos.';
     } else {
-        $matriculaExiste = false; // Flag para controlar se achamos duplicata
+        $matriculaExiste = false;
 
-        // Passo 1: Verifica se o arquivo existe para procurar por duplicatas
+
         if (file_exists("alunos.txt")) {
             $arq = fopen("alunos.txt", "r");
 
-            // Lê o arquivo linha a linha
+  
             while (($linha = fgets($arq)) !== false) {
                 $linhaLimpa = trim($linha);
                 if (empty($linhaLimpa)) continue;
 
                 $dados = explode(";", $linhaLimpa);
 
-                // Compara a matrícula da linha atual com a que o usuário digitou
                 if (isset($dados[0]) && $dados[0] == $matricula) {
-                    $matriculaExiste = true; // Achou!
-                    break; // Interrompe o loop
+                    $matriculaExiste = true;
+                    break;
                 }
             }
             fclose($arq);
         }
 
-        // Passo 2: Decide o que fazer com base na verificação
         if ($matriculaExiste) {
             $msgErro = "Erro: A matrícula '$matricula' já está cadastrada!";
         } else {
@@ -42,13 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $conteudo = file_exists("alunos.txt") ? file_get_contents("alunos.txt") : '';
             $arq = fopen("alunos.txt", "a") or die("Erro ao abrir arquivo");
 
-            // Verifica se o arquivo não está vazio e se o último caractere NÃO é uma quebra de linha
             if (!empty($conteudo) && substr($conteudo, -1) !== "\n" && substr($conteudo, -1) !== "\r") {
-                // Força um "Enter" (quebra de linha) antes de adicionar
                 fwrite($arq, PHP_EOL);
             }
 
-            // Monta a linha do novo aluno 
             $novaLinha = $matricula . ";" . $nome . ";" . $email . PHP_EOL;
             fwrite($arq, $novaLinha);
 
