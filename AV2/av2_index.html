@@ -4,14 +4,15 @@
     <!-- Cabeçalho do documento: define caracteres padrão, título da aba e importa o arquivo de design (CSS) -->
     <meta charset="UTF-8">
     <title>Almeida's Retreat</title>
-    <link rel="stylesheet" href="av2_estilo.css?v=4">
+    <!-- Adicionando ?v=5 para garantir o carregamento do CSS atualizado -->
+    <link rel="stylesheet" href="av2_estilo.css?v=5">
 </head>
 <body>
 
-<!-- Área invisível onde as notificações coloridas (Toast) de sucesso ou erro vão aparecer -->
+<!-- Área invisível onde as notificações coloridas de sucesso ou erro vão aparecer -->
 <div id="toast-container"></div>
 
-<!-- Barra de navegação superior (Menu principal do site) -->
+<!-- Barra de navegação superior -->
 <nav class="navbar">
     <a class="brand" onclick="mudarTela('home')">Almeida's Retreat</a>
     <div>
@@ -21,46 +22,48 @@
         <a onclick="mudarTela('reservas'); carregarReservas();">Suas Reservas</a>
         
         <!-- Botão invisível por padrão. Só aparece se quem logar for o Administrador -->
-        <a id="nav-admin" style="display:none; color: #ef4444;" onclick="abrirPainelAdmin()">Painel Admin</a>
+        <a id="nav-admin" class="nav-admin" style="display:none;" onclick="abrirPainelAdmin()">Painel Admin</a>
     </div>
     <div>
-        <a onclick="toggleDarkMode()" style="cursor: pointer; margin-right: 15px; font-size: 1.2em;" title="Alternar Tema Escuro">🌓</a>
+        <a onclick="toggleDarkMode()" class="nav-icon" title="Alternar Tema Escuro">🌓</a>
         
         <!-- Controles da conta do usuário logado -->
-        <span id="nav-user" style="display:none; font-weight: bold; color: #8a2be2; margin-right: 10px;"></span>
-        <a id="nav-perfil" style="display:none; color: #3b82f6; cursor: pointer; margin-right: 10px;" onclick="abrirPerfil()">Meu Perfil</a>
+        <span id="nav-user" class="nav-user" style="display:none;"></span>
+        <a id="nav-perfil" class="nav-perfil" style="display:none;" onclick="abrirPerfil()">Meu Perfil</a>
         
         <!-- Botões de entrar/sair (O JS gerencia qual deles fica visível) -->
         <a id="nav-login-btn" onclick="mudarTela('login')">Faça login ou crie uma conta</a>
-        <a id="nav-logout" style="display:none; color: #ef4444; cursor: pointer;" onclick="fazerLogout()">Sair</a>
+        <a id="nav-logout" class="nav-logout" style="display:none;" onclick="fazerLogout()">Sair</a>
     </div>
 </nav>
 
-<!-- TELA INICIAL (HOME): Banner de boas-vindas e breve descrição do hotel -->
+<!-- TELA INICIAL: Banner de boas-vindas e breve descrição do hotel -->
 <div id="home" class="tela ativa">
     <div class="hero">
         <h1>Uma Experiência Inesquecível</h1>
         <button class="btn-roxo" onclick="mudarTela('quartos'); carregarQuartos();">Reserve Agora</button>
     </div>
-    <div class="container-central" style="text-align: center; margin-top: 50px;">
+    <div class="container-central sobre-hotel">
         <h2>Sobre Almeida's Retreat</h2>
-        <p style="color: #666; margin-top: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <p>
             Situado nas encantadoras colinas de Santa Teresa, o Albergue Almeida's Retreat oferece uma experiência única de hospedagem no Rio de Janeiro. Com quartos confortáveis, atmosfera acolhedora e uma localização privilegiada...
         </p>
     </div>
 </div>
 
-<!-- TELA DE QUARTOS: Área de filtros (pesquisa por preço/pessoas) e a lista de quartos cadastrados no banco -->
+<!-- TELA DE QUARTOS: Área de filtros e a lista de quartos cadastrados no banco -->
 <div id="quartos" class="tela">
     <div class="sub-hero">
         <h2>NOSSOS QUARTOS</h2>
     </div>
     <div class="container-central">
-        <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; gap: 15px; align-items: center; justify-content: center; margin-bottom: 30px;">
-            <label style="font-weight: 600;">Preço Máx (R$):</label>
-            <input type="number" id="filtro_preco" placeholder="Ex: 200" onkeyup="filtrarQuartos()" style="padding: 8px; width: 100px; border: 1px solid #ddd; border-radius: 5px;">
-            <label style="font-weight: 600;">Mín. Pessoas:</label>
-            <input type="number" id="filtro_pessoas" placeholder="Ex: 2" onchange="filtrarQuartos()" style="padding: 8px; width: 80px; border: 1px solid #ddd; border-radius: 5px;">
+        <div class="filtro-bar">
+            <label>Preço Máx (R$):</label>
+            <input type="number" id="filtro_preco" class="input-filtro w-100px" placeholder="Ex: 200" onkeyup="filtrarQuartos()">
+            
+            <label>Mín. Pessoas:</label>
+            <input type="number" id="filtro_pessoas" class="input-filtro w-80px" placeholder="Ex: 2" onchange="filtrarQuartos()">
+            
             <button class="btn-azul" onclick="filtrarQuartos()">🔍 Filtrar</button>
         </div>
         <div class="grid-quartos" id="lista-quartos"></div>
@@ -70,9 +73,9 @@
 <!-- TELA DE CONTATO: Painel estático com telefone, email e endereço físico -->
 <div id="contato" class="tela">
     <div class="container-central">
-        <div style="text-align: center; margin-bottom: 40px;">
-            <h1 style="font-size: 2.5em; color: #222;">Fale Conosco!</h1>
-            <p style="color: #666; font-size: 1.1em;">Alguma pergunta ou reclamação? Só falar conosco!</p>
+        <div class="contato-header">
+            <h1>Fale Conosco!</h1>
+            <p>Alguma pergunta ou reclamação? Só falar conosco!</p>
         </div>
         <div class="contato-box">
             <h2>Informação de Contato:</h2>
@@ -89,12 +92,12 @@
     </div>
 </div>
 
-<!-- TELA DE LOGIN: Formulário de acesso para clientes já cadastrados (Layout dividido com foto lateral) -->
+<!-- TELA DE LOGIN: Formulário de acesso para clientes já cadastrados -->
 <div id="login" class="tela">
     <div class="split-layout">
         <div class="split-form">
             <h2>BEM-VINDO!</h2>
-            <p class="subtitle">Welcome back! Please enter your details.</p>
+            <p class="subtitle">Bem vindo de volta! Por favor coloque suas informações.</p>
             
             <div class="form-group">
                 <label>Email</label>
@@ -105,10 +108,10 @@
                 <input type="password" id="log_senha" placeholder="*********">
             </div>
             
-            <button class="btn-vermelho" style="width:100%; margin-top: 10px;" onclick="fazerLogin()">Entrar</button>
+            <button class="btn-vermelho btn-full" onclick="fazerLogin()">Entrar</button>
             
-            <p style="text-align:center; margin-top:30px; font-size: 0.9em;">
-                Não tem uma conta? <a onclick="mudarTela('cadastro')" style="color:#ef4444; cursor:pointer; font-weight: 600;">Crie de graça!</a>
+            <p class="auth-footer">
+                Não tem uma conta? <a onclick="mudarTela('cadastro')" class="link-vermelho">Crie de graça!</a>
             </p>
         </div>
         <div class="split-image"></div>
@@ -135,10 +138,10 @@
                 <input type="password" id="cad_senha" placeholder="Digite sua senha">
             </div>
             
-            <button class="btn-verde" style="width:100%; margin-top: 10px;" onclick="fazerCadastro()">Cadastrar!</button>
+            <button class="btn-verde btn-full" onclick="fazerCadastro()">Cadastrar!</button>
             
-            <p style="text-align:center; margin-top:30px; font-size: 0.9em;">
-                Já tem uma conta? <a onclick="mudarTela('login')" style="color:#2563eb; cursor:pointer; font-weight: 600;">Entrar!</a>
+            <p class="auth-footer">
+                Já tem uma conta? <a onclick="mudarTela('login')" class="link-azul">Entrar!</a>
             </p>
         </div>
         <div class="split-image split-image-cadastro"></div>
@@ -147,7 +150,7 @@
 
 <!-- TELA DE RESERVAS: Lista dinamicamente as viagens que o hóspede logado tem agendadas -->
 <div id="reservas" class="tela">
-    <div class="sub-hero" style="background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=2000&auto=format&fit=crop');">
+    <div class="sub-hero bg-reservas">
         <h2>SUAS RESERVAS</h2>
     </div>
     <div class="container-central">
@@ -155,24 +158,156 @@
     </div>
 </div>
 
-<!-- TELA DE PERFIL: Onde o cliente atualiza seus dados básicos (nome/email), muda a senha ou apaga a conta -->
-<div id="perfil" class="tela"><div class="container-central"><div style="background:white; padding:40px; border-radius:10px; max-width:500px; margin:auto;"><h2 style="text-align:center; color:#3b82f6; margin-bottom:20px;">MEU PERFIL</h2><div class="form-group"><label>Nome:</label><input type="text" id="perfil_nome"></div><div class="form-group"><label>Email:</label><input type="email" id="perfil_email"></div><div class="form-group"><label>Nova Senha:</label><input type="password" id="perfil_senha" placeholder="Deixe em branco para manter"></div><button class="btn-azul" style="width:100%;" onclick="salvarPerfil()">SALVAR</button><hr style="margin: 30px 0;"><h3 style="color:#ef4444; text-align:center;">Zona de Perigo</h3><button class="btn-vermelho" style="width:100%; margin-top:10px;" onclick="apagarConta()">APAGAR MINHA CONTA</button></div></div></div>
+<!-- TELA DE PERFIL: Atualiza dados, muda a senha ou apaga a conta -->
+<div id="perfil" class="tela">
+    <div class="container-central">
+        <div class="modal-card modal-sm">
+            <h2 class="titulo-azul">MEU PERFIL</h2>
+            
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" id="perfil_nome">
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="perfil_email">
+            </div>
+            <div class="form-group">
+                <label>Nova Senha:</label>
+                <input type="password" id="perfil_senha" placeholder="Deixe em branco para manter">
+            </div>
+            
+            <button class="btn-azul btn-full" onclick="salvarPerfil()">SALVAR</button>
+            <hr class="divisor">
+            
+            <h3 class="titulo-perigo">Zona de Perigo</h3>
+            <button class="btn-vermelho btn-full" onclick="apagarConta()">APAGAR MINHA CONTA</button>
+        </div>
+    </div>
+</div>
 
-<!-- TELA DE AVALIAÇÃO: Abre um mini-formulário quando o usuário quer dar notas para um quarto alugado -->
-<div id="avaliacao_tela" class="tela"><div class="container-central"><div style="background:white; padding:40px; border-radius:10px; max-width:500px; margin:auto;"><h2 style="text-align:center; color: #f59e0b; margin-bottom:20px;">⭐ Avalie sua Estadia</h2><input type="hidden" id="aval_quarto_id"><div class="form-group"><label>Nota:</label><select id="aval_nota"><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select></div><div class="form-group"><label>Comentário:</label><textarea id="aval_comentario" style="height:100px;"></textarea></div><button class="btn-roxo" style="width:100%; background:#f59e0b;" onclick="enviarAvaliacao()">Enviar Avaliação</button></div></div></div>
+<!-- TELA DE AVALIAÇÃO: Formulário de nota -->
+<div id="avaliacao_tela" class="tela">
+    <div class="container-central">
+        <div class="modal-card modal-sm">
+            <h2 class="titulo-amarelo">⭐ Avalie sua Estadia</h2>
+            <input type="hidden" id="aval_quarto_id">
+            
+            <div class="form-group">
+                <label>Nota:</label>
+                <select id="aval_nota">
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="1">⭐</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Comentário:</label>
+                <textarea id="aval_comentario" class="text-area-aval"></textarea>
+            </div>
+            <button class="btn-roxo btn-full" style="background:#f59e0b;" onclick="enviarAvaliacao()">Enviar Avaliação</button>
+        </div>
+    </div>
+</div>
 
-<!-- TELA DE PAGAMENTO E CHECKOUT: Permite escolher datas, calcula o valor exato multiplicando a diária, e finaliza a compra via Pix ou Cartão -->
-<div id="pagamento" class="tela"><div class="container-central"><div style="background:white; padding:40px; border-radius:10px; max-width:600px; margin:auto; box-shadow: 0 5px 20px rgba(0,0,0,0.05);"><h2>Pagamento e Confirmação</h2><input type="hidden" id="pag_quarto_id"><div class="form-group" style="display:flex; gap:15px; margin-top:20px;"><div style="flex:1;"><label>Check-in:</label><input type="date" id="pag_checkin" onchange="calcularTotal()"></div><div style="flex:1;"><label>Check-out:</label><input type="date" id="pag_checkout" onchange="calcularTotal()"></div></div><div class="form-group"><label>CPF:</label><input type="text" id="pag_cpf" placeholder="000.000.000-00"></div><div style="background: #e0e7ff; padding: 15px; text-align: center; border-radius: 8px; margin: 20px 0;"><p style="margin:0; color: #3b82f6; font-weight: bold;">Total a Pagar:</p><h2 id="pag_valor_total" style="color: #1d4ed8; font-size: 2em; margin: 5px 0;">R$ 0.00</h2></div><div class="form-group"><label>Método:</label><select id="pag_metodo" onchange="mudarFormaPagamento()"><option value="cartao">Cartão de Crédito</option><option value="pix">Pix</option></select></div><div id="bloco_cartao"><div class="form-group"><input type="text" id="pag_cartao" placeholder="Número do Cartão"></div></div><div id="bloco_pix" style="display:none; text-align:center; padding: 20px; background: #f0fdf4; border: 1px dashed #22c55e; border-radius: 5px; margin-bottom: 15px;"><p style="color:#166534; font-weight:bold;">Chave Pix (Celular):</p><h3 style="margin: 10px 0; letter-spacing: 2px;">(21) 99999-9999</h3></div><button class="btn-azul" style="width: 100%; padding:15px; font-size:1.1em;" onclick="finalizarReserva()">CONFIRMAR RESERVA</button></div></div></div>
+<!-- TELA DE PAGAMENTO E CHECKOUT -->
+<div id="pagamento" class="tela">
+    <div class="container-central">
+        <div class="modal-card modal-md">
+            <h2>Pagamento e Confirmação</h2>
+            <input type="hidden" id="pag_quarto_id">
+            
+            <div class="form-group flex-row">
+                <div class="flex-1">
+                    <label>Check-in:</label>
+                    <input type="date" id="pag_checkin" onchange="calcularTotal()">
+                </div>
+                <div class="flex-1">
+                    <label>Check-out:</label>
+                    <input type="date" id="pag_checkout" onchange="calcularTotal()">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>CPF:</label>
+                <input type="text" id="pag_cpf" placeholder="000.000.000-00">
+            </div>
+            
+            <div class="box-total">
+                <p>Total a Pagar:</p>
+                <h2 id="pag_valor_total">R$ 0.00</h2>
+            </div>
+            
+            <div class="form-group">
+                <label>Método:</label>
+                <select id="pag_metodo" onchange="mudarFormaPagamento()">
+                    <option value="cartao">Cartão de Crédito</option>
+                    <option value="pix">Pix</option>
+                </select>
+            </div>
+            
+            <div id="bloco_cartao">
+                <div class="form-group">
+                    <input type="text" id="pag_cartao" placeholder="Número do Cartão">
+                </div>
+            </div>
+            
+            <div id="bloco_pix" class="box-pix" style="display:none;">
+                <p>Chave Pix (Celular):</p>
+                <h3>(21) 99999-9999</h3>
+            </div>
+            
+            <button class="btn-azul btn-pagar" onclick="finalizarReserva()">CONFIRMAR RESERVA</button>
+        </div>
+    </div>
+</div>
 
-<!-- PAINEL DE ADMINISTRAÇÃO: Controle central do gerente. Visão geral (receita/reservas ativas), bloqueio de quartos para obra, criação e remoção de quartos. -->
-<div id="painel_admin" class="tela"><div class="container-central"><h2 style="text-align:center; color: #ef4444; margin-bottom: 40px;">PAINEL DE ADMINISTRAÇÃO</h2><div id="admin_dashboard_cards" class="grid-quartos"></div><div style="margin-top: 40px; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);"><h3 style="color: #f97316; margin-bottom: 20px;">Bloquear Quarto</h3><div style="display: flex; gap: 15px; flex-wrap: wrap;"><select id="admin_b_quarto" style="padding: 10px; border: 1px solid #ddd; flex: 1; border-radius:5px;"></select><input type="date" id="admin_b_inicio" style="padding: 10px; border: 1px solid #ddd; border-radius:5px;"><input type="date" id="admin_b_fim" style="padding: 10px; border: 1px solid #ddd; border-radius:5px;"><button class="btn-roxo" onclick="adminBloquearDatas()">Bloquear</button></div></div><div style="margin-top: 40px; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);"><h3 style="margin-bottom: 20px;">Cadastrar Novo Quarto</h3><div style="display: flex; gap: 10px; flex-wrap: wrap;"><input type="text" id="admin_q_nome" placeholder="Nome" style="padding:10px; border:1px solid #ddd; border-radius:5px; flex: 1; min-width: 200px;"><input type="number" id="admin_q_banheiros" placeholder="Banheiros" style="padding:10px; border:1px solid #ddd; border-radius:5px; width: 100px;"><input type="number" id="admin_q_camas" placeholder="Camas" style="padding:10px; border:1px solid #ddd; border-radius:5px; width: 100px;"><input type="number" id="admin_q_pessoas" placeholder="Pessoas" style="padding:10px; border:1px solid #ddd; border-radius:5px; width: 100px;"><input type="number" step="0.01" id="admin_q_preco" placeholder="Preço" style="padding:10px; border:1px solid #ddd; border-radius:5px; width: 120px;"><input type="file" id="admin_q_img" accept="image/*" style="padding:5px; flex: 1; min-width: 200px;"><button class="btn-roxo" onclick="adminAddQuarto()">Adicionar</button></div></div><h3 style="margin-top: 50px; margin-bottom:20px;">Gerenciar Quartos</h3><div id="admin-lista-quartos" class="grid-quartos"></div><h3 style="margin-top: 50px; margin-bottom:20px;">Reservas dos Clientes</h3><div id="admin-lista-reservas"></div></div></div>
+<!-- PAINEL DE ADMINISTRAÇÃO -->
+<div id="painel_admin" class="tela">
+    <div class="container-central">
+        <h2 class="admin-titulo">PAINEL DE ADMINISTRAÇÃO</h2>
+        
+        <div id="admin_dashboard_cards" class="grid-quartos"></div>
+        
+        <div class="admin-card">
+            <h3 class="admin-laranja">Bloquear Quarto</h3>
+            <div class="admin-form">
+                <select id="admin_b_quarto" class="admin-input flex-1"></select>
+                <input type="date" id="admin_b_inicio" class="admin-input">
+                <input type="date" id="admin_b_fim" class="admin-input">
+                <button class="btn-roxo" onclick="adminBloquearDatas()">Bloquear</button>
+            </div>
+        </div>
+        
+        <div class="admin-card">
+            <h3>Cadastrar Novo Quarto</h3>
+            <div class="admin-form-sm">
+                <input type="text" id="admin_q_nome" class="admin-input flex-1 min-w-200" placeholder="Nome">
+                <input type="number" id="admin_q_banheiros" class="admin-input w-100px" placeholder="Banheiros">
+                <input type="number" id="admin_q_camas" class="admin-input w-100px" placeholder="Camas">
+                <input type="number" id="admin_q_pessoas" class="admin-input w-100px" placeholder="Pessoas">
+                <input type="number" step="0.01" id="admin_q_preco" class="admin-input w-120px" placeholder="Preço">
+                <input type="file" id="admin_q_img" accept="image/*" class="admin-input flex-1 min-w-200" style="padding: 5px;">
+                <button class="btn-roxo" onclick="adminAddQuarto()">Adicionar</button>
+            </div>
+        </div>
+        
+        <h3 class="admin-subtitulo">Gerenciar Quartos</h3>
+        <div id="admin-lista-quartos" class="grid-quartos"></div>
+        
+        <h3 class="admin-subtitulo">Reservas dos Clientes</h3>
+        <div id="admin-lista-reservas"></div>
+        
+    </div>
+</div>
 
 <!-- ================= RODAPÉ GLOBAL ================= -->
-<!-- Seção fixa no final da tela com informações padronizadas para qualquer página do hotel -->
 <footer class="footer">
     <div>
         <h4>Almeida's Retreat</h4>
-        <p style="color: #888; margin-top: 10px; font-size: 0.9em;">O conforto que vossa mercê merece</p>
+        <p class="footer-slogan">O conforto que vossa mercê merece</p>
         <br>
         <p>Endereço: Road 12, Peace Avenue, Ado, Ekiti</p>
         <p>Telefone: (21) 99999-9999</p>
@@ -193,7 +328,7 @@
     </div>
 </footer>
 
-<!-- Importação do script centralizado com toda a lógica JS que faz as requisições para a API -->
+<!-- Importação do script -->
 <script src="av2_app.js?v=10"></script>
 </body>
 </html>
