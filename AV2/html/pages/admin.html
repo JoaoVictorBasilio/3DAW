@@ -1,0 +1,38 @@
+<!-- AV2 file: Layout da tela do painel admin para gerenciar quartos e ver estatísticas. -->
+<div id="painel_admin" class="tela">
+    <div class="container-central">
+        <h2 class="admin-titulo">PAINEL DE ADMINISTRAÇÃO</h2>
+        
+        <div id="admin_dashboard_cards" class="grid-quartos"></div>
+        
+        <div class="admin-card">
+            <h3 class="admin-laranja">Bloquear Quarto</h3>
+            <div class="admin-form">
+                <select id="admin_b_quarto" class="admin-input flex-1"></select>
+                <input type="date" id="admin_b_inicio" class="admin-input">
+                <input type="date" id="admin_b_fim" class="admin-input">
+                <button class="btn-roxo" onclick="adminBloquearDatas()">Bloquear</button>
+            </div>
+        </div>
+        
+        <div class="admin-card">
+            <h3>Cadastrar Novo Quarto</h3>
+            <div class="admin-form-sm">
+                <input type="text" id="admin_q_nome" class="admin-input flex-1 min-w-200" placeholder="Nome">
+                <input type="number" id="admin_q_banheiros" class="admin-input w-100px" placeholder="Banheiros">
+                <input type="number" id="admin_q_camas" class="admin-input w-100px" placeholder="Camas">
+                <input type="number" id="admin_q_pessoas" class="admin-input w-100px" placeholder="Pessoas">
+                <input type="number" step="0.01" id="admin_q_preco" class="admin-input w-120px" placeholder="Preço">
+                <input type="file" id="admin_q_img" accept="image/*" class="admin-input flex-1 min-w-200" style="padding: 5px;">
+                <button class="btn-roxo" onclick="adminAddQuarto()">Adicionar</button>
+            </div>
+        </div>
+        
+        <h3 class="admin-subtitulo">Gerenciar Quartos</h3>
+        <div id="admin-lista-quartos" class="grid-quartos"></div>
+        
+        <h3 class="admin-subtitulo">Reservas dos Clientes</h3>
+        <div id="admin-lista-reservas"></div>
+        
+    </div>
+</div>

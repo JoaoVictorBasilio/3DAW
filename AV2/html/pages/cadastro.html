@@ -1,0 +1,29 @@
+<!-- AV2 file: Tela de cadastro para criar uma nova conta. -->
+<div id="cadastro" class="tela">
+    <div class="split-layout">
+        <div class="split-form">
+            <h2>Crie sua conta!</h2>
+            <p class="subtitle">Preencha os dados abaixo para se registrar.</p>
+            
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" id="cad_nome" placeholder="Digite seu nome">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="cad_email" placeholder="Digite seu email">
+            </div>
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" id="cad_senha" placeholder="Digite sua senha">
+            </div>
+            
+            <button class="btn-verde btn-full" onclick="fazerCadastro()">Cadastrar!</button>
+            
+            <p class="auth-footer">
+                Já tem uma conta? <a onclick="mudarTela('login')" class="link-azul">Entrar!</a>
+            </p>
+        </div>
+        <div class="split-image split-image-cadastro"></div>
+    </div>
+</div>
