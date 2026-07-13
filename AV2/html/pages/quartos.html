@@ -1,0 +1,18 @@
+<!-- AV2 file: Tela de listagem de quartos onde os hóspedes podem ver as opções disponíveis. -->
+<div id="quartos" class="tela">
+    <div class="sub-hero">
+        <h2>NOSSOS QUARTOS</h2>
+    </div>
+    <div class="container-central">
+        <div class="filtro-bar">
+            <label>Preço Máx (R$):</label>
+            <input type="number" id="filtro_preco" class="input-filtro w-100px" placeholder="Ex: 200" onkeyup="filtrarQuartos()">
+            
+            <label>Mín. Pessoas:</label>
+            <input type="number" id="filtro_pessoas" class="input-filtro w-80px" placeholder="Ex: 2" onchange="filtrarQuartos()">
+            
+            <button class="btn-azul" onclick="filtrarQuartos()">🔍 Filtrar</button>
+        </div>
+        <div class="grid-quartos" id="lista-quartos"></div>
+    </div>
+</div>

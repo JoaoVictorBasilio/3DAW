@@ -1,0 +1,25 @@
+<!-- AV2 file: Tela de avaliação onde hóspedes podem avaliar um quarto. -->
+<div id="avaliacao_tela" class="tela">
+    <div class="container-central">
+        <div class="modal-card modal-sm">
+            <h2 class="titulo-amarelo">⭐ Avalie sua Estadia</h2>
+            <input type="hidden" id="aval_quarto_id">
+            
+            <div class="form-group">
+                <label>Nota:</label>
+                <select id="aval_nota">
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="1">⭐</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Comentário:</label>
+                <textarea id="aval_comentario" class="text-area-aval"></textarea>
+            </div>
+            <button class="btn-roxo btn-full" style="background:#f59e0b;" onclick="enviarAvaliacao()">Enviar Avaliação</button>
+        </div>
+    </div>
+</div>

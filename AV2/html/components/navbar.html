@@ -1,0 +1,24 @@
+<!-- AV2 file: Markup da barra de navegação para trocar telas e controlar ações de sessão do usuário. -->
+<nav class="navbar">
+    <a class="brand" onclick="mudarTela('home')">Almeida's Retreat</a>
+    <div>
+        <a onclick="mudarTela('home')">Início</a>
+        <a onclick="mudarTela('quartos'); carregarQuartos();">Quartos</a>
+        <a onclick="mudarTela('contato')">Contato</a>
+        <a onclick="mudarTela('reservas'); carregarReservas();">Suas Reservas</a>
+        
+        <!-- Botão invisível por padrão. Só aparece se quem logar for o Administrador -->
+        <a id="nav-admin" class="nav-admin" style="display:none;" onclick="abrirPainelAdmin()">Painel Admin</a>
+    </div>
+    <div>
+        <a onclick="toggleDarkMode()" class="nav-icon" title="Alternar Tema Escuro">🌓</a>
+        
+        <!-- Controles da conta do usuário logado -->
+        <span id="nav-user" class="nav-user" style="display:none;"></span>
+        <a id="nav-perfil" class="nav-perfil" style="display:none;" onclick="abrirPerfil()">Meu Perfil</a>
+        
+        <!-- Botões de entrar/sair (O JS gerencia qual deles fica visível) -->
+        <a id="nav-login-btn" onclick="mudarTela('login')">Faça login ou crie uma conta</a>
+        <a id="nav-logout" class="nav-logout" style="display:none;" onclick="fazerLogout()">Sair</a>
+    </div>
+</nav>
